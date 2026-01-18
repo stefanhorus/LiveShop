@@ -13,7 +13,8 @@ if (!content.includes('ApolloReactHooks')) {
     'import * as Apollo from \'@apollo/client\';',
     `import * as Apollo from '@apollo/client';
 import * as ApolloReactHooks from '@apollo/client/react';
-import { skipToken, type SkipToken } from '@apollo/client/react';`
+import { skipToken } from '@apollo/client/react';
+import type { SkipToken } from '@apollo/client/react';`
   );
 }
 
