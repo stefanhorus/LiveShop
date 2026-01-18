@@ -33,7 +33,7 @@ type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{
       { from: /export type (\w+)MutationFn = Apollo\.MutationFunction<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationFn = (variables?: $3) => Promise<{ data?: $2; errors?: any }>;' },
       { from: /ApolloReactHooks\.MutationResult/g, to: 'Apollo.MutationResult' },
       // BaseMutationOptions is not exported, add @ts-ignore
-      { from: /export type (\w+)MutationOptions = ApolloReactHooks\.BaseMutationOptions<([^,]+), ([^>]+)>;/g, to: '// @ts-ignore\nexport type $1MutationOptions = Apollo.BaseMutationOptions<$2, $3>;' },
+      { from: /export type (\w+)MutationOptions = Apollo\.BaseMutationOptions<([^,]+), ([^>]+)>;/g, to: '// @ts-ignore - BaseMutationOptions compatibility\nexport type $1MutationOptions = Apollo.BaseMutationOptions<$2, $3>;' },
       { from: /Apollo\.useQuery/g, to: 'ApolloReactHooks.useQuery' },
       { from: /Apollo\.useLazyQuery/g, to: 'ApolloReactHooks.useLazyQuery' },
       { from: /Apollo\.useSuspenseQuery/g, to: 'ApolloReactHooks.useSuspenseQuery' },
