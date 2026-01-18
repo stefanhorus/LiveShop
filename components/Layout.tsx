@@ -1,7 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import clsx from 'clsx';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
 
@@ -25,21 +24,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 LiveShop
               </Link>
             </div>
-
-            {/* Navigation */}
-            <nav className="hidden md:flex space-x-8">
-              <Link
-                href="/"
-                className={clsx(
-                  'text-sm font-medium transition-colors',
-                  router.pathname === '/'
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-700 hover:text-indigo-600'
-                )}
-              >
-                Acasă
-              </Link>
-            </nav>
 
             {/* Actions */}
             <div className="flex items-center space-x-4">
@@ -65,67 +49,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* About */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Despre Noi</h3>
-              <p className="text-gray-400 text-sm">
-                Magazin online specializat în produse sportive și trofee.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Link-uri Rapide</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Acasă
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/cart" className="text-gray-400 hover:text-white transition-colors">
-                    Coș
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Customer Service */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Servicii Clienți</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
-                    Contact
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/shipping" className="text-gray-400 hover:text-white transition-colors">
-                    Livrare
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/returns" className="text-gray-400 hover:text-white transition-colors">
-                    Returnări
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li>Email: contact@liveshop.ro</li>
-                <li>Telefon: +40 123 456 789</li>
-                <li>Luni - Vineri: 9:00 - 18:00</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; 2024 LiveShop. Toate drepturile rezervate.</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <h3 className="text-lg font-semibold mb-4">LiveShop</h3>
+            <p className="text-gray-400 text-sm">
+              &copy; 2024 LiveShop. Toate drepturile rezervate.
+            </p>
           </div>
         </div>
       </footer>
