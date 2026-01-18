@@ -3,6 +3,9 @@ import * as Apollo from '@apollo/client';
 import * as ApolloReactHooks from '@apollo/client/react';
 import { skipToken } from '@apollo/client/react';
 type SkipToken = typeof skipToken;
+
+// Type alias for MutationFunction (not exported in Apollo Client v4)
+type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{ data?: TData; errors?: any }>;
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };

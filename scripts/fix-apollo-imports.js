@@ -14,7 +14,10 @@ if (!content.includes('ApolloReactHooks')) {
     `import * as Apollo from '@apollo/client';
 import * as ApolloReactHooks from '@apollo/client/react';
 import { skipToken } from '@apollo/client/react';
-type SkipToken = typeof skipToken;`
+type SkipToken = typeof skipToken;
+
+// Type alias for MutationFunction (not exported in Apollo Client v4)
+type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{ data?: TData; errors?: any }>;`
   );
 }
 
