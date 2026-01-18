@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import clsx from 'clsx';
-import { MagnifyingGlassIcon, ShoppingCartIcon, UserIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
 
 interface LayoutProps {
@@ -11,15 +11,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
   const { getTotalItems } = useCart();
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -47,42 +39,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               >
                 Acasă
               </Link>
-              <Link
-                href="/categories"
-                className={clsx(
-                  'text-sm font-medium transition-colors',
-                  router.pathname === '/categories'
-                    ? 'text-indigo-600 border-b-2 border-indigo-600'
-                    : 'text-gray-700 hover:text-indigo-600'
-                )}
-              >
-                Categorii
-              </Link>
             </nav>
-
-            {/* Search */}
-            <form onSubmit={handleSearch} className="flex-1 max-w-lg mx-4">
-              <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Caută produse..."
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
-                />
-                <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-              </div>
-            </form>
 
             {/* Actions */}
             <div className="flex items-center space-x-4">
-              <Link
-                href="/wishlist"
-                className="p-2 text-gray-700 hover:text-indigo-600 transition-colors relative"
-                title="Wishlist"
-              >
-                <HeartIcon className="h-6 w-6" />
-              </Link>
               <Link
                 href="/cart"
                 className="p-2 text-gray-700 hover:text-indigo-600 transition-colors relative"
@@ -94,13 +54,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     {getTotalItems()}
                   </span>
                 )}
-              </Link>
-              <Link
-                href="/account"
-                className="p-2 text-gray-700 hover:text-indigo-600 transition-colors"
-                title="Cont"
-              >
-                <UserIcon className="h-6 w-6" />
               </Link>
             </div>
           </div>
@@ -132,13 +85,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/categories" className="text-gray-400 hover:text-white transition-colors">
-                    Categorii
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/account" className="text-gray-400 hover:text-white transition-colors">
-                    Contul Meu
+                  <Link href="/cart" className="text-gray-400 hover:text-white transition-colors">
+                    Coș
                   </Link>
                 </li>
               </ul>
