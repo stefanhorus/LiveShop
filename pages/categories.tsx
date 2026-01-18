@@ -45,7 +45,8 @@ const CategoriesPage: React.FC = () => {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayCategories.map((category) => {
-            const bgImage = 'backgroundImage' in category ? category.backgroundImage : null;
+            const bgImage = (category as any).backgroundImage;
+            const description = (category as any).description;
             return (
               <Link key={category.id} href={`/?category=${category.slug}`}>
                 <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
@@ -62,8 +63,8 @@ const CategoriesPage: React.FC = () => {
                   )}
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h2>
-                  {category.description && (
-                    <p className="text-gray-600 text-sm">{category.description}</p>
+                  {description && (
+                    <p className="text-gray-600 text-sm">{description}</p>
                   )}
                   <span className="inline-block mt-4 text-indigo-600 hover:text-indigo-800 font-medium">
                     Vezi produse →
