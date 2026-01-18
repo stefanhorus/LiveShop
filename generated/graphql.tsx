@@ -33334,7 +33334,23 @@ export type ProductDetailsQueryVariables = Exact<{
 }>;
 
 
-export type ProductDetailsQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description?: any | null, slug: string, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } | null } | null } | null, images?: Array<{ __typename?: 'ProductImage', id: string, url: string, alt?: string | null }> | null, category?: { __typename?: 'Category', id: string, name: string, slug: string } | null } | null };
+export type ProductDetailsQuery = { __typename?: 'Query', product?: { __typename?: 'Product', id: string, name: string, description?: any | null, slug: string, pricing?: { __typename?: 'ProductPricingInfo', onSale?: boolean | null, priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } | null } | null } | null, images?: Array<{ __typename?: 'ProductImage', id: string, url: string, alt?: string | null }> | null, category?: { __typename?: 'Category', id: string, name: string, slug: string } | null, attributes: Array<{ __typename?: 'SelectedAttribute', attribute: { __typename?: 'Attribute', id: string, name?: string | null }, values: Array<{ __typename?: 'AttributeValue', id: string, name?: string | null }> }>, variants?: Array<{ __typename?: 'ProductVariant', id: string, quantityAvailable?: number | null }> | null } | null };
+
+export type SimilarProductsQueryVariables = Exact<{
+  categoryId: Scalars['ID']['input'];
+  channel: Scalars['String']['input'];
+}>;
+
+
+export type SimilarProductsQuery = { __typename?: 'Query', category?: { __typename?: 'Category', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } | null } | null } | null } }> } | null } | null };
+
+export type SearchProductsQueryVariables = Exact<{
+  query: Scalars['String']['input'];
+  channel: Scalars['String']['input'];
+}>;
+
+
+export type SearchProductsQuery = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null, category?: { __typename?: 'Category', name: string, slug: string } | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } | null } | null } | null } }> } | null };
 
 
 export const AllProductsDocument = gql`
@@ -33476,6 +33492,7 @@ export const ProductDetailsDocument = gql`
           }
         }
       }
+      onSale
     }
     images {
       id
@@ -33486,6 +33503,20 @@ export const ProductDetailsDocument = gql`
       id
       name
       slug
+    }
+    attributes {
+      attribute {
+        id
+        name
+      }
+      values {
+        id
+        name
+      }
+    }
+    variants {
+      id
+      quantityAvailable
     }
   }
 }
@@ -33531,3 +33562,145 @@ export type ProductDetailsQueryHookResult = ReturnType<typeof useProductDetailsQ
 export type ProductDetailsLazyQueryHookResult = ReturnType<typeof useProductDetailsLazyQuery>;
 export type ProductDetailsSuspenseQueryHookResult = ReturnType<typeof useProductDetailsSuspenseQuery>;
 export type ProductDetailsQueryResult = ApolloReactHooks.QueryResult<ProductDetailsQuery, ProductDetailsQueryVariables>;
+export const SimilarProductsDocument = gql`
+    query SimilarProducts($categoryId: ID!, $channel: String!) {
+  category(id: $categoryId) {
+    products(first: 4, channel: $channel) {
+      edges {
+        node {
+          id
+          name
+          slug
+          thumbnail {
+            url
+            alt
+          }
+          pricing {
+            priceRange {
+              start {
+                gross {
+                  amount
+                  currency
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSimilarProductsQuery__
+ *
+ * To run a query within a React component, call `useSimilarProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSimilarProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSimilarProductsQuery({
+ *   variables: {
+ *      categoryId: // value for 'categoryId'
+ *      channel: // value for 'channel'
+ *   },
+ * });
+ */
+export function useSimilarProductsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables> & ({ variables: SimilarProductsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
+      }
+export function useSimilarProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
+        }
+// @ts-ignore
+export function useSimilarProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SimilarProductsQuery, SimilarProductsQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SimilarProductsQuery | undefined, SimilarProductsQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
+          return ApolloReactHooks.useSuspenseQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
+        }
+export type SimilarProductsQueryHookResult = ReturnType<typeof useSimilarProductsQuery>;
+export type SimilarProductsLazyQueryHookResult = ReturnType<typeof useSimilarProductsLazyQuery>;
+export type SimilarProductsSuspenseQueryHookResult = ReturnType<typeof useSimilarProductsSuspenseQuery>;
+export type SimilarProductsQueryResult = ApolloReactHooks.QueryResult<SimilarProductsQuery, SimilarProductsQueryVariables>;
+export const SearchProductsDocument = gql`
+    query SearchProducts($query: String!, $channel: String!) {
+  products(first: 20, channel: $channel, filter: {search: $query}) {
+    edges {
+      node {
+        id
+        name
+        slug
+        thumbnail {
+          url
+          alt
+        }
+        category {
+          name
+          slug
+        }
+        pricing {
+          priceRange {
+            start {
+              gross {
+                amount
+                currency
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchProductsQuery__
+ *
+ * To run a query within a React component, call `useSearchProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchProductsQuery({
+ *   variables: {
+ *      query: // value for 'query'
+ *      channel: // value for 'channel'
+ *   },
+ * });
+ */
+export function useSearchProductsQuery(baseOptions: ApolloReactHooks.QueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables> & ({ variables: SearchProductsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
+      }
+export function useSearchProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
+        }
+// @ts-ignore
+export function useSearchProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SearchProductsQuery, SearchProductsQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SearchProductsQuery | undefined, SearchProductsQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
+          return ApolloReactHooks.useSuspenseQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
+        }
+export type SearchProductsQueryHookResult = ReturnType<typeof useSearchProductsQuery>;
+export type SearchProductsLazyQueryHookResult = ReturnType<typeof useSearchProductsLazyQuery>;
+export type SearchProductsSuspenseQueryHookResult = ReturnType<typeof useSearchProductsSuspenseQuery>;
+export type SearchProductsQueryResult = ApolloReactHooks.QueryResult<SearchProductsQuery, SearchProductsQueryVariables>;

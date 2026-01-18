@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
 
 interface LayoutProps {
@@ -11,6 +11,14 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const { getTotalItems } = useCart();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -25,8 +33,43 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </Link>
             </div>
 
+            {/* Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <Link
+                href="/"
+                className={`text-sm font-medium transition-colors ${
+                  router.pathname === '/'
+                    ? 'text-indigo-600 border-b-2 border-indigo-600'
+                    : 'text-gray-700 hover:text-indigo-600'
+                }`}
+              >
+                Acasă
+              </Link>
+            </nav>
+
+            {/* Search */}
+            <form onSubmit={handleSearch} className="flex-1 max-w-lg mx-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Caută produse..."
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                />
+                <MagnifyingGlassIcon className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+              </div>
+            </form>
+
             {/* Actions */}
             <div className="flex items-center space-x-4">
+              <Link
+                href="/account"
+                className="p-2 text-gray-700 hover:text-indigo-600 transition-colors"
+                title="Cont"
+              >
+                <UserIcon className="h-6 w-6" />
+              </Link>
               <Link
                 href="/cart"
                 className="p-2 text-gray-700 hover:text-indigo-600 transition-colors relative"
@@ -50,11 +93,32 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       {/* Footer */}
       <footer className="bg-gray-800 text-white mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center">
-            <h3 className="text-lg font-semibold mb-4">LiveShop</h3>
-            <p className="text-gray-400 text-sm">
-              &copy; 2024 LiveShop. Toate drepturile rezervate.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4">LiveShop</h3>
+              <p className="text-gray-400 text-sm">
+                Magazinul tău online pentru produse sportive și trofee.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Link-uri utile</h3>
+              <ul className="space-y-2">
+                <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Acasă</Link></li>
+                <li><Link href="/account" className="text-gray-400 hover:text-white transition-colors">Contul meu</Link></li>
+                <li><Link href="/cart" className="text-gray-400 hover:text-white transition-colors">Coșul meu</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contact</h3>
+              <ul className="space-y-2 text-gray-400">
+                <li>Email: contact@liveshop.ro</li>
+                <li>Telefon: +40 7XX XXX XXX</li>
+                <li>Adresă: Strada Exemplu, Nr. 10, Oraș, România</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2024 LiveShop. Toate drepturile rezervate.</p>
           </div>
         </div>
       </footer>
