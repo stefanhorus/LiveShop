@@ -101,7 +101,7 @@ const CheckoutPage: React.FC = () => {
             <span className="ml-2 font-medium">Date și Adresă</span>
           </div>
           <div className="flex-1 h-1 mx-4 bg-gray-200">
-            <div className={`h-full ${step !== 'address' ? 'bg-indigo-600' : ''}`} />
+            <div className={`h-full ${(step === 'payment' || step === 'confirmation') ? 'bg-indigo-600' : ''}`} />
           </div>
           <div className={`flex items-center ${step === 'payment' ? 'text-indigo-600' : step === 'confirmation' ? 'text-indigo-600' : 'text-gray-400'}`}>
             <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
