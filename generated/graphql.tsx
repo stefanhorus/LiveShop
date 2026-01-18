@@ -32179,7 +32179,7 @@ export const TokenCreateDocument = gql`
   }
 }
     `;
-export type TokenCreateMutationFn = (TokenCreateMutation, TokenCreateMutationVariables) => Promise<any>;
+export type TokenCreateMutationFn = (variables?: TokenCreateMutationVariables) => Promise<{ data?: TokenCreateMutation; errors?: any }>;
 
 /**
  * __useTokenCreateMutation__
@@ -32224,7 +32224,7 @@ export const AccountRegisterDocument = gql`
   }
 }
     `;
-export type AccountRegisterMutationFn = (AccountRegisterMutation, AccountRegisterMutationVariables) => Promise<any>;
+export type AccountRegisterMutationFn = (variables?: AccountRegisterMutationVariables) => Promise<{ data?: AccountRegisterMutation; errors?: any }>;
 
 /**
  * __useAccountRegisterMutation__

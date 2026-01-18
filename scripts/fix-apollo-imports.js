@@ -27,7 +27,7 @@ type SkipToken = typeof skipToken;`
       { from: /Apollo\.UseSuspenseQueryResult/g, to: 'ApolloReactHooks.UseSuspenseQueryResult' },
       { from: /Apollo\.QueryResult/g, to: 'ApolloReactHooks.QueryResult' },
       { from: /Apollo\.MutationHookOptions/g, to: 'ApolloReactHooks.MutationHookOptions' },
-      { from: /export type (\w+)MutationFn = Apollo\.MutationFunction<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationFn = ($2, $3) => Promise<any>;' },
+      { from: /export type (\w+)MutationFn = Apollo\.MutationFunction<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationFn = (variables?: $3) => Promise<{ data?: $2; errors?: any }>;' },
       { from: /Apollo\.MutationResult/g, to: 'ApolloReactHooks.MutationResult' },
       { from: /Apollo\.BaseMutationOptions/g, to: 'ApolloReactHooks.BaseMutationOptions' },
       { from: /Apollo\.useQuery/g, to: 'ApolloReactHooks.useQuery' },
