@@ -33409,10 +33409,13 @@ export function useAllProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
           const options = {...defaultOptions, ...baseOptions}
           return ApolloReactHooks.useLazyQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, options);
         }
+// @ts-expect-error - Overload compatibility with SkipToken
 // @ts-ignore
 export function useAllProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery, AllProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
@@ -33463,10 +33466,13 @@ export function useCategoriesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
           const options = {...defaultOptions, ...baseOptions}
           return ApolloReactHooks.useLazyQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, options);
         }
+// @ts-expect-error - Overload compatibility with SkipToken
 // @ts-ignore
 export function useCategoriesSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<CategoriesQuery, CategoriesQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<CategoriesQuery | undefined, CategoriesQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
@@ -33574,10 +33580,13 @@ export function useProductDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
           const options = {...defaultOptions, ...baseOptions}
           return ApolloReactHooks.useLazyQuery<ProductDetailsQuery, ProductDetailsQueryVariables>(ProductDetailsDocument, options);
         }
+// @ts-expect-error - Overload compatibility with SkipToken
 // @ts-ignore
 export function useProductDetailsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<ProductDetailsQuery, ProductDetailsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<ProductDetailsQuery, ProductDetailsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<ProductDetailsQuery, ProductDetailsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<ProductDetailsQuery | undefined, ProductDetailsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<ProductDetailsQuery, ProductDetailsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
@@ -33642,10 +33651,13 @@ export function useSimilarProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQ
           const options = {...defaultOptions, ...baseOptions}
           return ApolloReactHooks.useLazyQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
         }
+// @ts-expect-error - Overload compatibility with SkipToken
 // @ts-ignore
 export function useSimilarProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SimilarProductsQuery, SimilarProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SimilarProductsQuery | undefined, SimilarProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
@@ -33712,10 +33724,13 @@ export function useSearchProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
           const options = {...defaultOptions, ...baseOptions}
           return ApolloReactHooks.useLazyQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
         }
+// @ts-expect-error - Overload compatibility with SkipToken
 // @ts-ignore
 export function useSearchProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SearchProductsQuery, SearchProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SearchProductsQuery | undefined, SearchProductsQueryVariables>;
+// @ts-expect-error - Overload compatibility
 // @ts-ignore
 export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}

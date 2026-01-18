@@ -37,10 +37,15 @@ replacements.forEach(({ from, to }) => {
   content = content.replace(from, to);
 });
 
-// Add @ts-ignore to all useSuspenseQuery overload signatures (second overload)
+// Add @ts-expect-error to all useSuspenseQuery overload signatures to fix type compatibility
+content = content.replace(
+  /\/\/ @ts-ignore\nexport function use(\w+)SuspenseQuery\(baseOptions\?:\s*ApolloReactHooks\.SuspenseQueryHookOptions/g,
+  '// @ts-expect-error - Overload compatibility with SkipToken\n// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions'
+);
+
 content = content.replace(
   /export function use(\w+)SuspenseQuery\(baseOptions\?:\s*SkipToken \| ApolloReactHooks\.SuspenseQueryHookOptions/g,
-  '// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions'
+  '// @ts-expect-error - Overload compatibility\n// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions'
 );
 
 // Write back
