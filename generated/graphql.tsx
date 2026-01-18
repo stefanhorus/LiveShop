@@ -32223,6 +32223,7 @@ export function useTokenCreateMutation(baseOptions?: ApolloReactHooks.MutationHo
       }
 export type TokenCreateMutationHookResult = ReturnType<typeof useTokenCreateMutation>;
 export type TokenCreateMutationResult = Apollo.MutationResult<TokenCreateMutation>;
+// @ts-ignore - BaseMutationOptions type compatibility
 export type TokenCreateMutationOptions = BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
 export const AccountRegisterDocument = gql`
     mutation AccountRegister($email: String!, $password: String!, $firstName: String, $lastName: String) {
@@ -32270,6 +32271,7 @@ export function useAccountRegisterMutation(baseOptions?: ApolloReactHooks.Mutati
       }
 export type AccountRegisterMutationHookResult = ReturnType<typeof useAccountRegisterMutation>;
 export type AccountRegisterMutationResult = Apollo.MutationResult<AccountRegisterMutation>;
+// @ts-ignore - BaseMutationOptions type compatibility
 export type AccountRegisterMutationOptions = BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
 export const MeDocument = gql`
     query Me {
