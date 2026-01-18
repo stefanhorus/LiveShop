@@ -32222,6 +32222,7 @@ export function useTokenCreateMutation(baseOptions?: ApolloReactHooks.MutationHo
         return ApolloReactHooks.useMutation<TokenCreateMutation, TokenCreateMutationVariables>(TokenCreateDocument, options);
       }
 export type TokenCreateMutationHookResult = ReturnType<typeof useTokenCreateMutation>;
+// @ts-ignore - MutationResult type compatibility
 export type TokenCreateMutationResult = Apollo.MutationResult<TokenCreateMutation>;
 // @ts-ignore - BaseMutationOptions type compatibility
 export type TokenCreateMutationOptions = BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
@@ -32270,6 +32271,7 @@ export function useAccountRegisterMutation(baseOptions?: ApolloReactHooks.Mutati
         return ApolloReactHooks.useMutation<AccountRegisterMutation, AccountRegisterMutationVariables>(AccountRegisterDocument, options);
       }
 export type AccountRegisterMutationHookResult = ReturnType<typeof useAccountRegisterMutation>;
+// @ts-ignore - MutationResult type compatibility
 export type AccountRegisterMutationResult = Apollo.MutationResult<AccountRegisterMutation>;
 // @ts-ignore - BaseMutationOptions type compatibility
 export type AccountRegisterMutationOptions = BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;

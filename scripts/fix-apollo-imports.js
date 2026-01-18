@@ -47,6 +47,8 @@ type BaseMutationOptions<TData, TVariables> = {
       { from: /Apollo\.MutationHookOptions/g, to: 'ApolloReactHooks.MutationHookOptions' },
       { from: /export type (\w+)MutationFn = Apollo\.MutationFunction<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationFn = (variables?: $3) => Promise<{ data?: $2; errors?: any }>;' },
       { from: /ApolloReactHooks\.MutationResult/g, to: 'Apollo.MutationResult' },
+      // Add @ts-ignore for MutationResult types
+      { from: /export type (\w+)MutationResult = Apollo\.MutationResult<([^>]+)>;/g, to: '// @ts-ignore - MutationResult type compatibility\nexport type $1MutationResult = Apollo.MutationResult<$2>;' },
       // BaseMutationOptions is not exported, use our type alias with @ts-ignore
       { from: /export type (\w+)MutationOptions = Apollo\.BaseMutationOptions<([^,]+), ([^>]+)>;/g, to: '// @ts-ignore - BaseMutationOptions type compatibility\nexport type $1MutationOptions = BaseMutationOptions<$2, $3>;' },
       { from: /Apollo\.useQuery/g, to: 'ApolloReactHooks.useQuery' },
