@@ -1,9 +1,11 @@
-import { useAllProductsQuery } from '../generated/graphql';
+import { useAllProductsQuery, type AllProductsQuery } from '../generated/graphql';
 import Link from 'next/link';
 
 interface ProductsProps {
 	selectedCategorySlug: string | null;
 }
+
+type ProductEdge = NonNullable<AllProductsQuery['products']>['edges'][number];
 
 function Products({ selectedCategorySlug }: ProductsProps) {
 	const { loading, error, data } = useAllProductsQuery();
@@ -21,12 +23,12 @@ function Products({ selectedCategorySlug }: ProductsProps) {
 	);
 
 	if (data) {
-		let products = data.products?.edges || [];
+		let products: ProductEdge[] = data.products?.edges || [];
 
 		// Filtrare după categorie dacă este selectată
 		if (selectedCategorySlug) {
 			products = products.filter(
-				({ node }) => node.category?.slug === selectedCategorySlug
+				(edge: ProductEdge) => edge.node.category?.slug === selectedCategorySlug
 			);
 		}
 
