@@ -17,7 +17,22 @@ import { skipToken } from '@apollo/client/react';
 type SkipToken = typeof skipToken;
 
 // Type alias for MutationFunction (not exported in Apollo Client v4)
-type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{ data?: TData; errors?: any }>;`
+type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{ data?: TData; errors?: any }>;
+
+// Type alias for BaseMutationOptions (not exported in Apollo Client v4)
+type BaseMutationOptions<TData, TVariables> = {
+  variables?: TVariables;
+  optimisticResponse?: TData;
+  refetchQueries?: any;
+  awaitRefetchQueries?: boolean;
+  errorPolicy?: 'none' | 'ignore' | 'all';
+  fetchPolicy?: 'no-cache' | 'network-only' | 'cache-only' | 'cache-first' | 'cache-and-network';
+  notifyOnNetworkStatusChange?: boolean;
+  onCompleted?: (data: TData) => void;
+  onError?: (error: any) => void;
+  update?: (cache: any, result: any) => void;
+  context?: any;
+};`
   );
 }
 
@@ -32,8 +47,8 @@ type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{
       { from: /Apollo\.MutationHookOptions/g, to: 'ApolloReactHooks.MutationHookOptions' },
       { from: /export type (\w+)MutationFn = Apollo\.MutationFunction<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationFn = (variables?: $3) => Promise<{ data?: $2; errors?: any }>;' },
       { from: /ApolloReactHooks\.MutationResult/g, to: 'Apollo.MutationResult' },
-      // BaseMutationOptions is not exported, add @ts-ignore
-      { from: /export type (\w+)MutationOptions = Apollo\.BaseMutationOptions<([^,]+), ([^>]+)>;/g, to: '// @ts-ignore - BaseMutationOptions compatibility\nexport type $1MutationOptions = Apollo.BaseMutationOptions<$2, $3>;' },
+      // BaseMutationOptions is not exported, use our type alias
+      { from: /export type (\w+)MutationOptions = Apollo\.BaseMutationOptions<([^,]+), ([^>]+)>;/g, to: 'export type $1MutationOptions = BaseMutationOptions<$2, $3>;' },
       { from: /Apollo\.useQuery/g, to: 'ApolloReactHooks.useQuery' },
       { from: /Apollo\.useLazyQuery/g, to: 'ApolloReactHooks.useLazyQuery' },
       { from: /Apollo\.useSuspenseQuery/g, to: 'ApolloReactHooks.useSuspenseQuery' },

@@ -6,6 +6,21 @@ type SkipToken = typeof skipToken;
 
 // Type alias for MutationFunction (not exported in Apollo Client v4)
 type MutationFunction<TData, TVariables> = (variables?: TVariables) => Promise<{ data?: TData; errors?: any }>;
+
+// Type alias for BaseMutationOptions (not exported in Apollo Client v4)
+type BaseMutationOptions<TData, TVariables> = {
+  variables?: TVariables;
+  optimisticResponse?: TData;
+  refetchQueries?: any;
+  awaitRefetchQueries?: boolean;
+  errorPolicy?: 'none' | 'ignore' | 'all';
+  fetchPolicy?: 'no-cache' | 'network-only' | 'cache-only' | 'cache-first' | 'cache-and-network';
+  notifyOnNetworkStatusChange?: boolean;
+  onCompleted?: (data: TData) => void;
+  onError?: (error: any) => void;
+  update?: (cache: any, result: any) => void;
+  context?: any;
+};
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -32208,8 +32223,7 @@ export function useTokenCreateMutation(baseOptions?: ApolloReactHooks.MutationHo
       }
 export type TokenCreateMutationHookResult = ReturnType<typeof useTokenCreateMutation>;
 export type TokenCreateMutationResult = Apollo.MutationResult<TokenCreateMutation>;
-// @ts-ignore - BaseMutationOptions compatibility
-export type TokenCreateMutationOptions = Apollo.BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
+export type TokenCreateMutationOptions = BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
 export const AccountRegisterDocument = gql`
     mutation AccountRegister($email: String!, $password: String!, $firstName: String, $lastName: String) {
   accountRegister(
@@ -32256,8 +32270,7 @@ export function useAccountRegisterMutation(baseOptions?: ApolloReactHooks.Mutati
       }
 export type AccountRegisterMutationHookResult = ReturnType<typeof useAccountRegisterMutation>;
 export type AccountRegisterMutationResult = Apollo.MutationResult<AccountRegisterMutation>;
-// @ts-ignore - BaseMutationOptions compatibility
-export type AccountRegisterMutationOptions = Apollo.BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
+export type AccountRegisterMutationOptions = BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
