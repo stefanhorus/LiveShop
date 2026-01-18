@@ -1,7 +1,13 @@
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
+const saleorApiUrl = process.env.NEXT_PUBLIC_SALEOR_API_URL;
+
+if (!saleorApiUrl) {
+  console.warn('⚠️ NEXT_PUBLIC_SALEOR_API_URL nu este setată! Folosind URL default.');
+}
+
 const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_SALEOR_API_URL || "https://vercel.saleor.cloud/graphql/",
+  uri: saleorApiUrl || "https://vercel.saleor.cloud/graphql/",
 });
 
 const client = new ApolloClient({
