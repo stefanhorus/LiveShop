@@ -33412,10 +33412,19 @@ export function useAllProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQuery
 // @ts-ignore
 export function useAllProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
+export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, options);
+        }
+export type AllProductsQueryHookResult = ReturnType<typeof useAllProductsQuery>;
+export type AllProductsLazyQueryHookResult = ReturnType<typeof useAllProductsLazyQuery>;
+export type AllProductsSuspenseQueryHookResult = ReturnType<typeof useAllProductsSuspenseQuery>;
+export type AllProductsQueryResult = ApolloReactHooks.QueryResult<AllProductsQuery, AllProductsQueryVariables>;
+export const CategoriesDocument = gql`
+    query Categories {
+  categories(first: 10) {
     edges {
       node {
         id
@@ -33457,10 +33466,18 @@ export function useCategoriesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 // @ts-ignore
 export function useCategoriesSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<CategoriesQuery, CategoriesQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
+export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, options);
+        }
+export type CategoriesQueryHookResult = ReturnType<typeof useCategoriesQuery>;
+export type CategoriesLazyQueryHookResult = ReturnType<typeof useCategoriesLazyQuery>;
+export type CategoriesSuspenseQueryHookResult = ReturnType<typeof useCategoriesSuspenseQuery>;
+export type CategoriesQueryResult = ApolloReactHooks.QueryResult<CategoriesQuery, CategoriesQueryVariables>;
+export const ProductDetailsDocument = gql`
+    query ProductDetails($id: ID!, $channel: String!) {
   product(id: $id, channel: $channel) {
     id
     name
@@ -33560,10 +33577,18 @@ export function useProductDetailsLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 // @ts-ignore
 export function useProductDetailsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<ProductDetailsQuery, ProductDetailsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<ProductDetailsQuery, ProductDetailsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
+export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<ProductDetailsQuery, ProductDetailsQueryVariables>(ProductDetailsDocument, options);
+        }
+export type ProductDetailsQueryHookResult = ReturnType<typeof useProductDetailsQuery>;
+export type ProductDetailsLazyQueryHookResult = ReturnType<typeof useProductDetailsLazyQuery>;
+export type ProductDetailsSuspenseQueryHookResult = ReturnType<typeof useProductDetailsSuspenseQuery>;
+export type ProductDetailsQueryResult = ApolloReactHooks.QueryResult<ProductDetailsQuery, ProductDetailsQueryVariables>;
+export const SimilarProductsDocument = gql`
+    query SimilarProducts($categoryId: ID!, $channel: String!) {
   category(id: $categoryId) {
     products(first: 4, channel: $channel) {
       edges {
@@ -33620,10 +33645,18 @@ export function useSimilarProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQ
 // @ts-ignore
 export function useSimilarProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SimilarProductsQuery, SimilarProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
+export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
+        }
+export type SimilarProductsQueryHookResult = ReturnType<typeof useSimilarProductsQuery>;
+export type SimilarProductsLazyQueryHookResult = ReturnType<typeof useSimilarProductsLazyQuery>;
+export type SimilarProductsSuspenseQueryHookResult = ReturnType<typeof useSimilarProductsSuspenseQuery>;
+export type SimilarProductsQueryResult = ApolloReactHooks.QueryResult<SimilarProductsQuery, SimilarProductsQueryVariables>;
+export const SearchProductsDocument = gql`
+    query SearchProducts($query: String!, $channel: String!) {
   products(first: 20, channel: $channel, filter: {search: $query}) {
     edges {
       node {
@@ -33682,11 +33715,11 @@ export function useSearchProductsLazyQuery(baseOptions?: ApolloReactHooks.LazyQu
 // @ts-ignore
 export function useSearchProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<SearchProductsQuery, SearchProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<AllProductsQuery | undefined, AllProductsQueryVariables>;
 // @ts-ignore - Overload compatibility
-// @ts-ignore
-export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions
+export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
         }
 export type SearchProductsQueryHookResult = ReturnType<typeof useSearchProductsQuery>;
 export type SearchProductsLazyQueryHookResult = ReturnType<typeof useSearchProductsLazyQuery>;
