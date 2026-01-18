@@ -52,8 +52,8 @@ const ProductPage: React.FC = () => {
 
     addToCart({
       productId: product.id,
-      name: product.name,
-      price: parseFloat(price.amount),
+      name: product.name || 'Produs',
+      price: Number(price.amount),
       currency: price.currency,
       image: mainImage?.url,
     });
