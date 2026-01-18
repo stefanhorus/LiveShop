@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Products from '../components/ProductCollection';
 import CategorySelector from '../components/CategorySelector';
 import { useCategoriesQuery } from '../generated/graphql';
 
 const Home: React.FC = () => {
-  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string | null>(null);
+  const router = useRouter();
+  const categoryFromQuery = typeof router.query.category === 'string' ? router.query.category : null;
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string | null>(categoryFromQuery);
   const { data: categoriesData, loading: categoriesLoading } = useCategoriesQuery();
+
+  useEffect(() => {
+    if (categoryFromQuery) {
+      setSelectedCategorySlug(categoryFromQuery);
+    }
+  }, [categoryFromQuery]);
 
   // Categorii hardcodate pentru a se potrivi cu cerințele
   const targetCategories = ['mingi-fotbal', 'mini-trofee', 'postere-cu-echipe'];

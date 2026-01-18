@@ -45,6 +45,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               >
                 Acasă
               </Link>
+              <Link
+                href="/categories"
+                className={`text-sm font-medium transition-colors ${
+                  router.pathname === '/categories'
+                    ? 'text-indigo-600 border-b-2 border-indigo-600'
+                    : 'text-gray-700 hover:text-indigo-600'
+                }`}
+              >
+                Categorii
+              </Link>
             </nav>
 
             {/* Search */}
@@ -104,6 +114,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <h3 className="text-lg font-semibold mb-4">Link-uri utile</h3>
               <ul className="space-y-2">
                 <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Acasă</Link></li>
+                <li><Link href="/categories" className="text-gray-400 hover:text-white transition-colors">Categorii</Link></li>
                 <li><Link href="/account" className="text-gray-400 hover:text-white transition-colors">Contul meu</Link></li>
                 <li><Link href="/cart" className="text-gray-400 hover:text-white transition-colors">Coșul meu</Link></li>
               </ul>
