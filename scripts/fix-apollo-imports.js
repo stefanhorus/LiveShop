@@ -37,18 +37,10 @@ replacements.forEach(({ from, to }) => {
   content = content.replace(from, to);
 });
 
-// Add @ts-ignore to all useSuspenseQuery overloads to avoid type errors
+// Add @ts-ignore to all useSuspenseQuery overload signatures (second overload)
 content = content.replace(
-  /\/\/ @ts-ignore\nexport function use\w+SuspenseQuery\(baseOptions\?:\s*ApolloReactHooks\.SuspenseQueryHookOptions/g,
-  '// @ts-ignore\nexport function useAllProductsSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions'
-);
-
-// Fix all useSuspenseQuery overload signatures
-content = content.replace(
-  /export function use(\w+)SuspenseQuery\(baseOptions\?:\s*ApolloReactHooks\.SuspenseQueryHookOptions/g,
-  (match, name) => {
-    return `// @ts-ignore\nexport function use${name}SuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions`;
-  }
+  /export function use(\w+)SuspenseQuery\(baseOptions\?:\s*SkipToken \| ApolloReactHooks\.SuspenseQueryHookOptions/g,
+  '// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions'
 );
 
 // Write back
