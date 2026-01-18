@@ -44,20 +44,22 @@ const CategoriesPage: React.FC = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {displayCategories.map((category) => (
-            <Link key={category.id} href={`/?category=${category.slug}`}>
-              <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
-                {category.backgroundImage?.url ? (
-                  <img
-                    src={category.backgroundImage.url}
-                    alt={category.name}
-                    className="w-full h-48 object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                    <span className="text-white text-2xl font-bold">{category.name}</span>
-                  </div>
-                )}
+          {displayCategories.map((category) => {
+            const bgImage = 'backgroundImage' in category ? category.backgroundImage : null;
+            return (
+              <Link key={category.id} href={`/?category=${category.slug}`}>
+                <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden">
+                  {bgImage?.url ? (
+                    <img
+                      src={bgImage.url}
+                      alt={category.name}
+                      className="w-full h-48 object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                      <span className="text-white text-2xl font-bold">{category.name}</span>
+                    </div>
+                  )}
                 <div className="p-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-2">{category.name}</h2>
                   {category.description && (
@@ -69,7 +71,8 @@ const CategoriesPage: React.FC = () => {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>
