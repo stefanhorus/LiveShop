@@ -37,15 +37,21 @@ replacements.forEach(({ from, to }) => {
   content = content.replace(from, to);
 });
 
-// Add @ts-expect-error to all useSuspenseQuery overload signatures to fix type compatibility
+// Add @ts-ignore to all useSuspenseQuery overload signatures to fix type compatibility
+// First overload (without SkipToken)
 content = content.replace(
-  /\/\/ @ts-ignore\nexport function use(\w+)SuspenseQuery\(baseOptions\?:\s*ApolloReactHooks\.SuspenseQueryHookOptions/g,
-  '// @ts-expect-error - Overload compatibility with SkipToken\n// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions'
+  /\/\/ @ts-ignore\nexport function use(\w+)SuspenseQuery\(baseOptions\?:\s*ApolloReactHooks\.SuspenseQueryHookOptions[^;]+;/g,
+  (match) => {
+    return match.replace(/^\/\/ @ts-ignore/, '// @ts-ignore\n// @ts-expect-error - Overload compatibility');
+  }
 );
 
+// Second overload (with SkipToken)
 content = content.replace(
-  /export function use(\w+)SuspenseQuery\(baseOptions\?:\s*SkipToken \| ApolloReactHooks\.SuspenseQueryHookOptions/g,
-  '// @ts-expect-error - Overload compatibility\n// @ts-ignore\nexport function use$1SuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions'
+  /export function use(\w+)SuspenseQuery\(baseOptions\?:\s*SkipToken \| ApolloReactHooks\.SuspenseQueryHookOptions[^;]+;/g,
+  (match) => {
+    return '// @ts-expect-error - Overload compatibility\n' + match;
+  }
 );
 
 // Write back
