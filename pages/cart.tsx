@@ -4,7 +4,7 @@ import { TrashIcon, PlusIcon, MinusIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
 
 const CartPage: React.FC = () => {
-  const { items: cartItems, updateQuantity, removeItem, getTotalPrice } = useCart();
+  const { items: cartItems, updateQuantity, removeFromCart, getTotalPrice } = useCart();
 
   const handleUpdateQuantity = (id: string, delta: number) => {
     const item = cartItems.find((i) => i.id === id);
@@ -78,7 +78,7 @@ const CartPage: React.FC = () => {
                       {(item.price * item.quantity).toFixed(2)} {item.currency}
                     </p>
                     <button
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                       className="mt-2 text-red-600 hover:text-red-800"
                       title="Șterge"
                     >
