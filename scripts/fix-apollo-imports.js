@@ -18,15 +18,16 @@ import { skipToken, type SkipToken } from '@apollo/client/react';`
 }
 
 // Replace all Apollo.* references with ApolloReactHooks.*
+// Order matters - do specific patterns first
 const replacements = [
   { from: /Apollo\.QueryHookOptions/g, to: 'ApolloReactHooks.QueryHookOptions' },
   { from: /Apollo\.LazyQueryHookOptions/g, to: 'ApolloReactHooks.LazyQueryHookOptions' },
   { from: /Apollo\.SuspenseQueryHookOptions/g, to: 'ApolloReactHooks.SuspenseQueryHookOptions' },
   { from: /Apollo\.UseSuspenseQueryResult/g, to: 'ApolloReactHooks.UseSuspenseQueryResult' },
   { from: /Apollo\.QueryResult/g, to: 'ApolloReactHooks.QueryResult' },
-  { from: /Apollo\.useQuery/g, to: 'ApolloReactHooks.useQuery' },
-  { from: /Apollo\.useLazyQuery/g, to: 'ApolloReactHooks.useLazyQuery' },
-  { from: /Apollo\.useSuspenseQuery/g, to: 'ApolloReactHooks.useSuspenseQuery' },
+  { from: /Apollo\.useQuery\(/g, to: 'ApolloReactHooks.useQuery(' },
+  { from: /Apollo\.useLazyQuery\(/g, to: 'ApolloReactHooks.useLazyQuery(' },
+  { from: /Apollo\.useSuspenseQuery\(/g, to: 'ApolloReactHooks.useSuspenseQuery(' },
   { from: /Apollo\.skipToken/g, to: 'skipToken' },
   { from: /Apollo\.SkipToken/g, to: 'SkipToken' },
 ];
