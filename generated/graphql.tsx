@@ -31779,6 +31779,36 @@ export type SearchProductsQueryVariables = Exact<{
 
 export type SearchProductsQuery = { __typename?: 'Query', products?: { __typename?: 'ProductCountableConnection', edges: Array<{ __typename?: 'ProductCountableEdge', node: { __typename?: 'Product', id: string, name: string, slug: string, thumbnail?: { __typename?: 'Image', url: string, alt?: string | null } | null, category?: { __typename?: 'Category', name: string, slug: string } | null, pricing?: { __typename?: 'ProductPricingInfo', priceRange?: { __typename?: 'TaxedMoneyRange', start?: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } | null } | null } | null } }> } | null };
 
+export type TokenCreateMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type TokenCreateMutation = { __typename?: 'Mutation', tokenCreate?: { __typename?: 'CreateToken', token?: string | null, refreshToken?: string | null, user?: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, message?: string | null }> } | null };
+
+export type AccountRegisterMutationVariables = Exact<{
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  firstName?: InputMaybe<Scalars['String']['input']>;
+  lastName?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type AccountRegisterMutation = { __typename?: 'Mutation', accountRegister?: { __typename?: 'AccountRegister', user?: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string } | null, errors: Array<{ __typename?: 'AccountError', field?: string | null, message?: string | null }> } | null };
+
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, email: string, firstName: string, lastName: string, dateJoined: any } | null };
+
+export type OrdersQueryVariables = Exact<{
+  first: Scalars['Int']['input'];
+}>;
+
+
+export type OrdersQuery = { __typename?: 'Query', me?: { __typename?: 'User', orders?: { __typename?: 'OrderCountableConnection', edges: Array<{ __typename?: 'OrderCountableEdge', node: { __typename?: 'Order', id: string, number: string, created: any, status: OrderStatus, total: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } }, lines: Array<{ __typename?: 'OrderLine', id: string, productName: string, quantity: number, variantName: string }> } }> } | null } | null };
+
 
 export const AllProductsDocument = gql`
     query AllProducts {
@@ -32131,3 +32161,213 @@ export type SearchProductsQueryHookResult = ReturnType<typeof useSearchProductsQ
 export type SearchProductsLazyQueryHookResult = ReturnType<typeof useSearchProductsLazyQuery>;
 export type SearchProductsSuspenseQueryHookResult = ReturnType<typeof useSearchProductsSuspenseQuery>;
 export type SearchProductsQueryResult = ApolloReactHooks.QueryResult<SearchProductsQuery, SearchProductsQueryVariables>;
+export const TokenCreateDocument = gql`
+    mutation TokenCreate($email: String!, $password: String!) {
+  tokenCreate(email: $email, password: $password) {
+    token
+    refreshToken
+    user {
+      id
+      email
+      firstName
+      lastName
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
+    `;
+export type TokenCreateMutationFn = Apollo.MutationFunction<TokenCreateMutation, TokenCreateMutationVariables>;
+
+/**
+ * __useTokenCreateMutation__
+ *
+ * To run a mutation, you first call `useTokenCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTokenCreateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [tokenCreateMutation, { data, loading, error }] = useTokenCreateMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useTokenCreateMutation(baseOptions?: Apollo.MutationHookOptions<TokenCreateMutation, TokenCreateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<TokenCreateMutation, TokenCreateMutationVariables>(TokenCreateDocument, options);
+      }
+export type TokenCreateMutationHookResult = ReturnType<typeof useTokenCreateMutation>;
+export type TokenCreateMutationResult = Apollo.MutationResult<TokenCreateMutation>;
+export type TokenCreateMutationOptions = Apollo.BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
+export const AccountRegisterDocument = gql`
+    mutation AccountRegister($email: String!, $password: String!, $firstName: String, $lastName: String) {
+  accountRegister(
+    input: {email: $email, password: $password, firstName: $firstName, lastName: $lastName}
+  ) {
+    user {
+      id
+      email
+      firstName
+      lastName
+    }
+    errors {
+      field
+      message
+    }
+  }
+}
+    `;
+export type AccountRegisterMutationFn = Apollo.MutationFunction<AccountRegisterMutation, AccountRegisterMutationVariables>;
+
+/**
+ * __useAccountRegisterMutation__
+ *
+ * To run a mutation, you first call `useAccountRegisterMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAccountRegisterMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [accountRegisterMutation, { data, loading, error }] = useAccountRegisterMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *      firstName: // value for 'firstName'
+ *      lastName: // value for 'lastName'
+ *   },
+ * });
+ */
+export function useAccountRegisterMutation(baseOptions?: Apollo.MutationHookOptions<AccountRegisterMutation, AccountRegisterMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AccountRegisterMutation, AccountRegisterMutationVariables>(AccountRegisterDocument, options);
+      }
+export type AccountRegisterMutationHookResult = ReturnType<typeof useAccountRegisterMutation>;
+export type AccountRegisterMutationResult = Apollo.MutationResult<AccountRegisterMutation>;
+export type AccountRegisterMutationOptions = Apollo.BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
+export const MeDocument = gql`
+    query Me {
+  me {
+    id
+    email
+    firstName
+    lastName
+    dateJoined
+  }
+}
+    `;
+
+/**
+ * __useMeQuery__
+ *
+ * To run a query within a React component, call `useMeQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMeQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMeQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<MeQuery, MeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+      }
+export function useMeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<MeQuery, MeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+        }
+// @ts-ignore
+export function useMeSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<MeQuery, MeQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<MeQuery, MeQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useMeSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<MeQuery, MeQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<MeQuery | undefined, MeQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useMeSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<MeQuery, MeQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
+          return ApolloReactHooks.useSuspenseQuery<MeQuery, MeQueryVariables>(MeDocument, options);
+        }
+export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
+export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
+export type MeSuspenseQueryHookResult = ReturnType<typeof useMeSuspenseQuery>;
+export type MeQueryResult = ApolloReactHooks.QueryResult<MeQuery, MeQueryVariables>;
+export const OrdersDocument = gql`
+    query Orders($first: Int!) {
+  me {
+    orders(first: $first) {
+      edges {
+        node {
+          id
+          number
+          created
+          status
+          total {
+            gross {
+              amount
+              currency
+            }
+          }
+          lines {
+            id
+            productName
+            quantity
+            variantName
+          }
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useOrdersQuery__
+ *
+ * To run a query within a React component, call `useOrdersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrdersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrdersQuery({
+ *   variables: {
+ *      first: // value for 'first'
+ *   },
+ * });
+ */
+export function useOrdersQuery(baseOptions: ApolloReactHooks.QueryHookOptions<OrdersQuery, OrdersQueryVariables> & ({ variables: OrdersQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<OrdersQuery, OrdersQueryVariables>(OrdersDocument, options);
+      }
+export function useOrdersLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<OrdersQuery, OrdersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<OrdersQuery, OrdersQueryVariables>(OrdersDocument, options);
+        }
+// @ts-ignore
+export function useOrdersSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<OrdersQuery, OrdersQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<OrdersQuery, OrdersQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useOrdersSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<OrdersQuery, OrdersQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<OrdersQuery | undefined, OrdersQueryVariables>;
+// @ts-ignore - Overload compatibility
+export function useOrdersSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<OrdersQuery, OrdersQueryVariables>) {
+          const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
+          return ApolloReactHooks.useSuspenseQuery<OrdersQuery, OrdersQueryVariables>(OrdersDocument, options);
+        }
+export type OrdersQueryHookResult = ReturnType<typeof useOrdersQuery>;
+export type OrdersLazyQueryHookResult = ReturnType<typeof useOrdersLazyQuery>;
+export type OrdersSuspenseQueryHookResult = ReturnType<typeof useOrdersSuspenseQuery>;
+export type OrdersQueryResult = ApolloReactHooks.QueryResult<OrdersQuery, OrdersQueryVariables>;

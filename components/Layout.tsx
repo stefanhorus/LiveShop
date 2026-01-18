@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { MagnifyingGlassIcon, ShoppingCartIcon, UserIcon } from '@heroicons/react/24/outline';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const { getTotalItems } = useCart();
+  const { isAuthenticated, user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
@@ -75,10 +77,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="flex items-center space-x-4">
               <Link
                 href="/account"
-                className="p-2 text-gray-700 hover:text-indigo-600 transition-colors"
-                title="Cont"
+                className="p-2 text-gray-700 hover:text-indigo-600 transition-colors relative"
+                title={isAuthenticated ? user?.email || 'Cont' : 'Cont'}
               >
                 <UserIcon className="h-6 w-6" />
+                {isAuthenticated && (
+                  <span className="absolute top-0 right-0 bg-green-500 rounded-full h-2 w-2"></span>
+                )}
               </Link>
               <Link
                 href="/cart"

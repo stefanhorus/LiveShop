@@ -154,3 +154,87 @@ export const SearchProducts = gql`
     }
   }
 `;
+
+export const TokenCreate = gql`
+  mutation TokenCreate($email: String!, $password: String!) {
+    tokenCreate(email: $email, password: $password) {
+      token
+      refreshToken
+      user {
+        id
+        email
+        firstName
+        lastName
+      }
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const AccountRegister = gql`
+  mutation AccountRegister($email: String!, $password: String!, $firstName: String, $lastName: String) {
+    accountRegister(
+      input: {
+        email: $email
+        password: $password
+        firstName: $firstName
+        lastName: $lastName
+      }
+    ) {
+      user {
+        id
+        email
+        firstName
+        lastName
+      }
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+
+export const Me = gql`
+  query Me {
+    me {
+      id
+      email
+      firstName
+      lastName
+      dateJoined
+    }
+  }
+`;
+
+export const Orders = gql`
+  query Orders($first: Int!) {
+    me {
+      orders(first: $first) {
+        edges {
+          node {
+            id
+            number
+            created
+            status
+            total {
+              gross {
+                amount
+                currency
+              }
+            }
+            lines {
+              id
+              productName
+              quantity
+              variantName
+            }
+          }
+        }
+      }
+    }
+  }
+`;
