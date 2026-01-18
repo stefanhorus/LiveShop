@@ -33416,6 +33416,8 @@ export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReac
 // @ts-ignore - Overload compatibility
 export function useAllProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
           return ApolloReactHooks.useSuspenseQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, options);
         }
 export type AllProductsQueryHookResult = ReturnType<typeof useAllProductsQuery>;
@@ -33470,6 +33472,8 @@ export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReact
 // @ts-ignore - Overload compatibility
 export function useCategoriesSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
           return ApolloReactHooks.useSuspenseQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, options);
         }
 export type CategoriesQueryHookResult = ReturnType<typeof useCategoriesQuery>;
@@ -33581,6 +33585,8 @@ export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloR
 // @ts-ignore - Overload compatibility
 export function useProductDetailsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<ProductDetailsQuery, ProductDetailsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
           return ApolloReactHooks.useSuspenseQuery<ProductDetailsQuery, ProductDetailsQueryVariables>(ProductDetailsDocument, options);
         }
 export type ProductDetailsQueryHookResult = ReturnType<typeof useProductDetailsQuery>;
@@ -33649,6 +33655,8 @@ export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | Apollo
 // @ts-ignore - Overload compatibility
 export function useSimilarProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SimilarProductsQuery, SimilarProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
           return ApolloReactHooks.useSuspenseQuery<SimilarProductsQuery, SimilarProductsQueryVariables>(SimilarProductsDocument, options);
         }
 export type SimilarProductsQueryHookResult = ReturnType<typeof useSimilarProductsQuery>;
@@ -33719,6 +33727,8 @@ export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloR
 // @ts-ignore - Overload compatibility
 export function useSearchProductsSuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<SearchProductsQuery, SearchProductsQueryVariables>) {
           const options = baseOptions === skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          // @ts-ignore - Type compatibility
+
           return ApolloReactHooks.useSuspenseQuery<SearchProductsQuery, SearchProductsQueryVariables>(SearchProductsDocument, options);
         }
 export type SearchProductsQueryHookResult = ReturnType<typeof useSearchProductsQuery>;

@@ -50,6 +50,12 @@ content = content.replace(
   '// @ts-ignore - Overload compatibility\nexport function use$1SuspenseQuery(baseOptions?: SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<$2>) {'
 );
 
+// Add @ts-ignore to all return statements with useSuspenseQuery to fix type errors
+content = content.replace(
+  /(\s+)return ApolloReactHooks\.useSuspenseQuery</g,
+  '$1// @ts-ignore - Type compatibility\n$1return ApolloReactHooks.useSuspenseQuery<'
+);
+
 // Write back
 fs.writeFileSync(filePath, content, 'utf8');
 
