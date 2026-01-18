@@ -32179,7 +32179,7 @@ export const TokenCreateDocument = gql`
   }
 }
     `;
-export type TokenCreateMutationFn = Apollo.MutationFunction<TokenCreateMutation, TokenCreateMutationVariables>;
+export type TokenCreateMutationFn = (TokenCreateMutation, TokenCreateMutationVariables) => Promise<any>;
 
 /**
  * __useTokenCreateMutation__
@@ -32204,8 +32204,8 @@ export function useTokenCreateMutation(baseOptions?: ApolloReactHooks.MutationHo
         return ApolloReactHooks.useMutation<TokenCreateMutation, TokenCreateMutationVariables>(TokenCreateDocument, options);
       }
 export type TokenCreateMutationHookResult = ReturnType<typeof useTokenCreateMutation>;
-export type TokenCreateMutationResult = Apollo.MutationResult<TokenCreateMutation>;
-export type TokenCreateMutationOptions = Apollo.BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
+export type TokenCreateMutationResult = ApolloReactHooks.MutationResult<TokenCreateMutation>;
+export type TokenCreateMutationOptions = ApolloReactHooks.BaseMutationOptions<TokenCreateMutation, TokenCreateMutationVariables>;
 export const AccountRegisterDocument = gql`
     mutation AccountRegister($email: String!, $password: String!, $firstName: String, $lastName: String) {
   accountRegister(
@@ -32224,7 +32224,7 @@ export const AccountRegisterDocument = gql`
   }
 }
     `;
-export type AccountRegisterMutationFn = Apollo.MutationFunction<AccountRegisterMutation, AccountRegisterMutationVariables>;
+export type AccountRegisterMutationFn = (AccountRegisterMutation, AccountRegisterMutationVariables) => Promise<any>;
 
 /**
  * __useAccountRegisterMutation__
@@ -32251,8 +32251,8 @@ export function useAccountRegisterMutation(baseOptions?: ApolloReactHooks.Mutati
         return ApolloReactHooks.useMutation<AccountRegisterMutation, AccountRegisterMutationVariables>(AccountRegisterDocument, options);
       }
 export type AccountRegisterMutationHookResult = ReturnType<typeof useAccountRegisterMutation>;
-export type AccountRegisterMutationResult = Apollo.MutationResult<AccountRegisterMutation>;
-export type AccountRegisterMutationOptions = Apollo.BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
+export type AccountRegisterMutationResult = ApolloReactHooks.MutationResult<AccountRegisterMutation>;
+export type AccountRegisterMutationOptions = ApolloReactHooks.BaseMutationOptions<AccountRegisterMutation, AccountRegisterMutationVariables>;
 export const MeDocument = gql`
     query Me {
   me {
